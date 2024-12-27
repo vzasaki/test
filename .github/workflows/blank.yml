@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- เชื่อมต่อกับไฟล์ CSS -->
+    <link rel="stylesheet" href="login.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif; /* กำหนดฟอนต์ */
+    background-color: #adadad; /* สีพื้นหลัง */
+    display: flex; /* จัดตำแหน่งให้อยู่ตรงกลางทั้งแนวนอนและแนวตั้ง */
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    height: 100vh; /* ความสูงของหน้าจอ */
+    margin: 0; /* ลบระยะขอบของ body */
+}
+
+/* การจัดสไตล์สำหรับกล่องคอนเทนเนอร์ */
+.login-container {
+    background: #ffffff; /* พื้นหลังสีขาว */
+    padding: 20px 30px; /* ระยะห่างภายใน */
+    border-radius: 15px; /* มุมโค้งของกล่อง */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1); /* เงาของกล่อง */
+    width: 300px; /* กำหนดความกว้าง */
+    position: relative; /* ใช้สำหรับจัดตำแหน่งลิงก์ */
+    text-align: center; /* จัดข้อความให้อยู่กลาง */
+}
+
+/* สไตล์ของหัวข้อ */
+h2 {
+    margin-bottom: 20px; /* ระยะห่างด้านล่าง */
+}
+
+/* การจัดสไตล์ของกลุ่มอินพุต */
+.input-group {
+    margin-bottom: 15px; /* ระยะห่างด้านล่างของแต่ละกลุ่ม */
+    text-align: left; /* จัดข้อความให้อยู่ด้านซ้าย */
+    
+}
+
+/* สไตล์ของป้ายกำกับ */
+label {
+    display: block; /* แสดงเป็นบล็อก */
+    font-size: 14px; /* ขนาดตัวอักษร */
+    margin-bottom: 5px; /* ระยะห่างจากอินพุต */
+    color: #333; /* สีข้อความ */
+    white-space: nowrap;
+}
+
+/* สไตล์ของช่องอินพุต */
+input {
+    width: 100%; /* ความกว้างเต็ม */
+    padding: 10px; /* ระยะห่างภายใน */
+    font-size: 14px; /* ขนาดตัวอักษร */
+    border: 1px solid #ccc; /* ขอบช่องอินพุต */
+    border-radius: 5px; /* มุมโค้งของช่อง */
+}
+/* ปรับตำแหน่ง checkbox และข้อความ "จดจำรหัสผ่าน" */
+.one {
+    display: flex; /* ใช้ flexbox สำหรับจัดตำแหน่งให้อยู่ในแนวนอน */
+    align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+    justify-content: flex-start; /* จัดให้เริ่มต้นจากทางซ้าย */
+    gap: 8px; /* เพิ่มระยะห่างระหว่าง checkbox กับข้อความ */
+    margin-top: auto; /* ลดระยะห่างระหว่างช่องรหัสผ่านและ checkbox */
+    text-align: left;
+    width: 10%; /* ให้กล่อง .one กว้างเต็ม */
+}
+
+button:hover {
+    background-color: #0056b3; /* สีพื้นหลังเมื่อชี้เมาส์ */
+}
+
+/* การแสดงข้อความข้อผิดพลาด */
+.error-message {
+    color: red; /* สีข้อความข้อผิดพลาด */
+    font-size: 14px; /* ขนาดตัวอักษร */
+    margin-top: 10px; /* ระยะห่างด้านบน */
+    display: none; /* ซ่อนข้อความโดยค่าเริ่มต้น */
+}
+
+/* การจัดลิงก์ด้านล่างของฟอร์ม */
+.footer-links {
+    display: flex; /* จัดตำแหน่งเป็นแถว */
+    justify-content: space-between; /* กระจายลิงก์ไปคนละฝั่ง */
+    font-size: 12px; /* ขนาดตัวอักษร */
+    margin-top: 15px; /* ระยะห่างด้านบน */
+}
+
+/* การจัดสไตล์ของลิงก์ */
+.footer-links a {
+    color: #007BFF; /* สีลิงก์ */
+    text-decoration: none; /* ลบเส้นใต้ */
+    transition: color 0.3s; /* เพิ่มเอฟเฟกต์เปลี่ยนสี */
+}
+
+.footer-links a:hover {
+    color: #0056b3; /* สีลิงก์เมื่อชี้เมาส์ */
+}
+
+/* เน้นคำในลิงก์ด้านซ้าย */
+.footer-links .left-link span {
+    font-weight: bold; /* ข้อความหนา */
+}
+.footer-links .right-link span{
+    font-weight: bold;
+}
+
+    </style>
+</head>
+<body>
+    <!-- กล่องคอนเทนเนอร์หลัก -->
+    <div class="login-container">
+        <h2>Login</h2>
+        <!-- ฟอร์มสำหรับล็อกอิน -->
+        <form id="loginForm">
+            <!-- กลุ่มอินพุตสำหรับกรอก Username -->
+            <div class="input-group">
+                <label for="username">ชื่อผู้ใช้งาน:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <!-- กลุ่มอินพุตสำหรับกรอก Password -->
+            <div class="input-group">
+                <label for="password">รหัสผ่าน:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+             <div class="one">
+                <input type="checkbox" id="register-check">
+                <label for="register-check">จดจำรหัสผ่าน</label>
+            </div>
+            <!-- ลิงก์ด้านล่างของฟอร์ม -->
+            <div class="footer-links">
+                <!-- ลิงก์สำหรับสมัครสมาชิกใหม่ -->
+                <a href="no.html" class="left-link"><span>ไม่มีรหัสผ่าน?</span></a>
+                <!-- ลิงก์สำหรับกรณีลืมรหัสผ่านหรือชื่อผู้ใช้ -->
+                <a href="id.html" class="right-link"><span>จำรหัสผ่านไม่ได้?</span></a>
+            </div>
+            <!-- ปุ่มสำหรับล็อกอิน -->
+            <div style="text-align: center; margin-top: 20px;">
+                <a href="calculator.html" style="display: inline-block; padding: 10px 20px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px; text-align: center;">
+                    Log In
+                </a>
+            </div>
+            <!-- พื้นที่แสดงข้อความข้อผิดพลาด -->
+            <p id="errorMessage" class="error-message"></p>
+            
+        </form>
+    </div>
+</body>
+</html>
